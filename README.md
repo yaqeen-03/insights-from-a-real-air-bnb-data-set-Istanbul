@@ -168,6 +168,52 @@ You will find latitude and longitude at the bottom of screen
 
 <img width="386" alt="Screenshot 1446-07-28 at 10 24 38 AM" src="https://github.com/user-attachments/assets/8fa3e372-59d4-4021-b4ee-ffcd5a735b95" />
 
+## This analysis explores the Airbnb dataset for Istanbul, focusing on availability, prices, and room types. We aim to uncover insights like the busiest days and the average price by room type to help users make informed decisions.
+# What are the busiest days with the most unavailable listings?
+
+```python
+# Count the number of unavailable listings by date
+busiest_days = calendar[calendar['available'] == 'f']['date'].value_counts().head(10)
+
+# Display the busiest days
+print("Top 10 Busiest Days (Most Unavailable):")
+print(busiest_days)
+
+# Plot a bar graph for the busiest days
+import matplotlib.pyplot as plt
+busiest_days.plot(kind='bar', color='#FADADD')
+plt.title('Top 10 Busiest Days (Unavailable)', fontsize=16)
+plt.xlabel('Date', fontsize=12)
+plt.ylabel('Number of Unavailable Listings', fontsize=12)
+plt.xticks(rotation=45, fontsize=10)
+plt.yticks(fontsize=10)
+plt.show()
+```
+<img width="612" alt="Screenshot 1446-07-28 at 11 04 40 AM" src="https://github.com/user-attachments/assets/2613f6cf-b42f-4121-8641-82e16c4181a2" />
+
+# What is the average price by room type in Istanbul?
+
+```python
+# Calculate the average price for each room type
+average_price_per_room = listings.groupby('room_type')['price'].mean()
+
+# Display the results
+print("Average Price by Room Type:")
+print(average_price_per_room)
+
+# Plot a bar graph for the average price by room type
+average_price_per_room.plot(kind='bar', color=['#FADADD', '#F5E6CC', '#D5AAFF', '#B5EAD7'])
+plt.title('Average Price by Room Type', fontsize=16)
+plt.ylabel('Average Price (USD)', fontsize=12)
+plt.xlabel('Room Type', fontsize=12)
+plt.xticks(fontsize=10)
+plt.yticks(fontsize=10)
+plt.show()
+```
+<img width="559" alt="Screenshot 1446-07-28 at 11 05 44 AM" src="https://github.com/user-attachments/assets/75c1f228-2782-4ef7-9a2f-ac8a241ffc6b" />
+
+
+
 
 
 
